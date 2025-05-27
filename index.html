@@ -4,63 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Адаптивна сторінка з ефектами</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar__brand">GameBox</div>
-        <button class="navbar__hamburger">☰</button>
-        <ul class="navbar__links">
-            <li class="navbar__item"><a href="#" class="navbar__link navbar__link--active">Головна</a></li>
-            <li class="navbar__item"><a href="#" class="navbar__link">Каталог</a></li>
-            <li class="navbar__item"><a href="#" class="navbar__link">Про нас</a></li>
-            <li class="navbar__item"><a href="#" class="navbar__link">Контакти</a></li>
+    <nav class="nav-container">
+        <button class="hamburger">☰</button>
+        <ul class="nav-menu">
+            <li class="nav-item"><img src="https://place-hold.it/24x24" alt="icon">Головна</li>
+            <li class="nav-item"><img src="https://place-hold.it/24x24" alt="icon">Про нас</li>
+            <li class="nav-item"><img src="https://place-hold.it/24x24" alt="icon">Послуги</li>
+            <li class="nav-item"><img src="https://place-hold.it/24x24" alt="icon">Контакти</li>
         </ul>
     </nav>
 
-    <main>
-        <section class="slider">
-    <div class="slider__slides">
-        <div class="slider__slide" style="background-image: url('https://place-hold.it/800x300/cccccc/000000?text=Стратегічні+ігри');">
-            <div class="slider__content">
-                <h2>Стратегічні ігри</h2>
-            </div>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel-slide"><img src="https://place-hold.it/800x300/1" alt="Slide 1"></div>
+            <div class="carousel-slide"><img src="https://place-hold.it/800x300/2" alt="Slide 2"></div>
+            <div class="carousel-slide"><img src="https://place-hold.it/800x300/3" alt="Slide 3"></div>
+            <div class="carousel-slide"><img src="https://place-hold.it/800x300/4" alt="Slide 4"></div>
         </div>
-        <div class="slider__slide" style="background-image: url('https://place-hold.it/800x300/bbbbbb/000000?text=Сімейні+ігри');">
-            <div class="slider__content">
-                <h2>Сімейні ігри</h2>
-            </div>
+        <div class="carousel-controls">
+            <button class="prev">←</button>
+            <button class="next">→</button>
         </div>
-        <div class="slider__slide" style="background-image: url('https://place-hold.it/800x300/aaaaaa/000000?text=Безкоштовна+доставка');">
-            <div class="slider__content">
-                <h2>Безкоштовна доставка</h2>
-            </div>
+        <div class="carousel-indicators">
+            <div class="indicator active" data-slide="0"></div>
+            <div class="indicator" data-slide="1"></div>
+            <div class="indicator" data-slide="2"></div>
+            <div class="indicator" data-slide="3"></div>
         </div>
     </div>
-    <button class="slider__prev">◄</button>
-    <button class="slider__next">►</button>
-    <div class="slider__dots">
-        <span class="slider__dot slider__dot--active"></span>
-        <span class="slider__dot"></span>
-        <span class="slider__dot"></span>
-    </div>
-</section>
 
+    <img src="https://place-hold.it/300x200/5" alt="Large image 1" class="large-only">
+    <img src="https://place-hold.it/300x200/6" alt="Large image 2" class="large-only">
 
-
-        <section class="features">
-       
-            <div class="features__grid">
-                <div class="feature">
-                </div>
-                <div class="feature">
-                </div>
-                <div class="feature">
-                </div>
-            </div>
-        </section>
-    </main>
+    <img src="https://place-hold.it/300x200/7" alt="Medium image 1" class="medium-only">
+    <img src="https://place-hold.it/300x200/8" alt="Medium image 2" class="medium-only">
 
     <script src="script.js"></script>
 </body>
