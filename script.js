@@ -1,61 +1,37 @@
-const hamburger = document.querySelector('.nav-hamburger');
-const navLinks = document.querySelector('.nav-links');
-const slides = document.querySelectorAll('.carousel-slide');
-const dots = document.querySelectorAll('.carousel-dot');
-const prevBtn = document.querySelector('.carousel-prev');
-const nextBtn = document.querySelector('.carousel-next');
-const slidesContainer = document.querySelector('.carousel-slides');
-let currentSlide = 0;
-let autoSlideInterval;
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.mobile-menu');
 
 hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+  mobileMenu.classList.toggle('show');
 });
 
+let slideIndex = 0;
+let slides = document.querySelectorAll('.slide');
+let dots = document.querySelectorAll('.dot');
+
 function showSlide(index) {
-    currentSlide = (index + slides.length) % slides.length;
-    slidesContainer.style.transform = `translateX(-${currentSlide * 100 / slides.length}%)`;
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+    dots[i].classList.toggle('active', i === index);
+  });
+  slideIndex = index;
 }
 
 function nextSlide() {
-    showSlide(currentSlide + 1);
+  slideIndex = (slideIndex + 1) % slides.length;
+  showSlide(slideIndex);
 }
 
 function prevSlide() {
-    showSlide(currentSlide - 1);
+  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+  showSlide(slideIndex);
 }
 
-function startAutoSlide() {
-    autoSlideInterval = setInterval(nextSlide, 4000);
-}
-
-function stopAutoSlide() {
-    clearInterval(autoSlideInterval);
-}
+document.querySelector('.next').addEventListener('click', nextSlide);
+document.querySelector('.prev').addEventListener('click', prevSlide);
 
 dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-        showSlide(i);
-        stopAutoSlide();
-        startAutoSlide();
-    });
+  dot.addEventListener('click', () => showSlide(i));
 });
 
-prevBtn.addEventListener('click', () => {
-    prevSlide();
-    stopAutoSlide();
-    startAutoSlide();
-});
-
-nextBtn.addEventListener('click', () => {
-    nextSlide();
-    stopAutoSlide();
-    startAutoSlide();
-});
-
-document.querySelector('.carousel').addEventListener('mouseenter', stopAutoSlide);
-document.querySelector('.carousel').addEventListener('mouseleave', startAutoSlide);
-
-startAutoSlide();
-showSlide(currentSlide);
+setInterval(nextSlide, 5000); 
