@@ -3,49 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Лабораторна робота</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Лабораторна 3</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav class="navbar">
-    <div class="large-nav nav-links">
-      <a href="#"><span>🏠</span> Головна</a>
-      <a href="#"><span>📄</span> Про нас</a>
-      <a href="#"><span>🖼️</span> Галерея</a>
-      <a href="#"><span>📞</span> Контакти</a>
-    </div>
-    <div class="medium-nav">
-      <button id="hamburgerBtn" class="hamburger">☰</button>
-    </div>
-  </nav>
-  <div id="mobileMenu" class="mobile-menu">
-    <a href="#">Головна</a>
-    <a href="#">Про нас</a>
-    <a href="#">Галерея</a>
-    <a href="#">Контакти</a>
-  </div>
+  <header>
+    <nav>
+      <div class="logo">Лого</div>
+      <ul class="menu large-screen">
+        <li><a href="#">Головна</a></li>
+        <li><a href="#">Про нас</a></li>
+        <li><a href="#">Послуги</a></li>
+        <li><a href="#">Контакти</a></li>
+      </ul>
+      <div class="hamburger medium-screen" id="hamburger">&#9776;</div>
+      <ul class="menu medium-screen hidden" id="mobileMenu">
+        <li><a href="#">Головна</a></li>
+        <li><a href="#">Про нас</a></li>
+        <li><a href="#">Послуги</a></li>
+        <li><a href="#">Контакти</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <section class="carousel">
     <div class="slides" id="slides">
-      <img src="https://place-hold.it/800x400/FF5733/ffffff?text=Слайд+1" alt="Slide 1" />
-      <img src="https://place-hold.it/800x400/33C1FF/ffffff?text=Слайд+2" alt="Slide 2" />
-      <img src="https://place-hold.it/800x400/75FF33/ffffff?text=Слайд+3" alt="Slide 3" />
+      <img src="https://place-hold.it/800x300?text=Slide+1" alt="Slide 1" />
+      <img src="https://place-hold.it/800x300?text=Slide+2" alt="Slide 2" />
+      <img src="https://place-hold.it/800x300?text=Slide+3" alt="Slide 3" />
     </div>
-    <button class="prev" id="prevBtn">❮</button>
-    <button class="next" id="nextBtn">❯</button>
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
     <div class="dots" id="dots"></div>
   </section>
 
-  <section class="images large-only">
-    <img src="https://place-hold.it/300x200/888/fff?text=Large+1" alt="Large Only 1" />
-    <img src="https://place-hold.it/300x200/666/fff?text=Large+2" alt="Large Only 2" />
-    <img src="https://place-hold.it/300x200/444/fff?text=Large+3" alt="Large Only 3" />
-  </section>
-
-  <section class="images medium-only">
-    <img src="https://place-hold.it/300x200/aaa/000?text=Medium+1" alt="Medium Only 1" />
-    <img src="https://place-hold.it/300x200/ccc/000?text=Medium+2" alt="Medium Only 2" />
-    <img src="https://place-hold.it/300x200/eee/000?text=Medium+3" alt="Medium Only 3" />
+  <section class="images">
+    <div class="large-only">
+      <img src="https://place-hold.it/200x200?text=Large1" />
+      <img src="https://place-hold.it/200x200?text=Large2" />
+    </div>
+    <div class="medium-only">
+      <img src="https://place-hold.it/200x200?text=Medium1" />
+      <img src="https://place-hold.it/200x200?text=Medium2" />
+    </div>
   </section>
 
   <script src="script.js"></script>
