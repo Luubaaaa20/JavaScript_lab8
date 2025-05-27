@@ -3,41 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Адаптивна веб-сторінка</title>
+    <title>GameBox – Головна сторінка</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="nav">
-        <button class="nav-hamburger">☰</button>
-        <ul class="nav-links">
-            <li><a href="#" class="nav-link">🏠 Головна</a></li>
-            <li><a href="#" class="nav-link">📚 Каталог</a></li>
-            <li><a href="#" class="nav-link">ℹ️ Про нас</a></li>
-            <li><a href="#" class="nav-link">📞 Контакти</a></li>
+    <nav class="menu">
+        <ul>
+            <li><a href="#">Головна</a></li>
+            <li><a href="#">Магазин</a></li>
+            <li><a href="#">Про нас</a></li>
+            <li><a href="#">Контакти</a></li>
         </ul>
     </nav>
 
     <section class="carousel">
-        <div class="carousel-slides">
-            <div class="carousel-slide" style="background-image: url('https://place-hold.it/800x400/666/fff/000')"></div>
-            <div class="carousel-slide" style="background-image: url('https://place-hold.it/800x400/777/fff/000')"></div>
-            <div class="carousel-slide" style="background-image: url('https://place-hold.it/800x400/888/fff/000')"></div>
-            <div class="carousel-slide" style="background-image: url('https://place-hold.it/800x400/999/fff/000')"></div>
+        <div class="carousel-container">
+            <img src="https://place-hold.it/600x300/0088ff/ffffff?text=Слайд+1" alt="Слайд 1" class="carousel-slide active">
+            <img src="https://place-hold.it/600x300/ff5500/ffffff?text=Слайд+2" alt="Слайд 2" class="carousel-slide">
+            <img src="https://place-hold.it/600x300/00cc66/ffffff?text=Слайд+3" alt="Слайд 3" class="carousel-slide">
         </div>
-        <button class="carousel-prev">◄</button>
-        <button class="carousel-next">►</button>
-        <div class="carousel-dots">
-            <span class="carousel-dot active"></span>
-            <span class="carousel-dot"></span>
-            <span class="carousel-dot"></span>
-            <span class="carousel-dot"></span>
+        <div class="carousel-buttons">
+            <button onclick="changeSlide(-1)">&#10094;</button>
+            <button onclick="changeSlide(1)">&#10095;</button>
         </div>
     </section>
 
-    <img src="https://place-hold.it/300x200/aaa/fff/000" alt="Large Image 1" class="large-image">
-    <img src="https://place-hold.it/300x200/bbb/fff/000" alt="Large Image 2" class="large-image">
-    <img src="https://place-hold.it/300x200/ccc/fff/000" alt="Medium Image 1" class="medium-image">
-    <img src="https://place-hold.it/300x200/ddd/fff/000" alt="Medium Image 2" class="medium-image">
+    <section class="large-images-section">
+        <h2>Зображення для Large-пристроїв</h2>
+        <div class="image-grid">
+            <img src="https://place-hold.it/300x200/aaa/fff/000" alt="Large 1" class="large-image">
+            <img src="https://place-hold.it/300x200/bbb/fff/000" alt="Large 2" class="large-image">
+            <img src="https://place-hold.it/300x200/ccc/fff/000" alt="Large 3" class="large-image">
+            <img src="https://place-hold.it/300x200/ddd/fff/000" alt="Medium 1" class="medium-image">
+            <img src="https://place-hold.it/300x200/eee/fff/000" alt="Medium 2" class="medium-image">
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
