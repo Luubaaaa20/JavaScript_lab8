@@ -1,53 +1,83 @@
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+const hamburger = document.querySelector('.navbar__hamburger');
+const navMenu = document.querySelector('.navbar__links');
+const navLinks = document.querySelectorAll('.navbar__link');
+const slides = document.querySelectorAll('.slider__slide');
+const dots = document.querySelectorAll('.slider__dot');
+const prevBtn = document.querySelector('.slider__prev');
+const nextBtn = document.querySelector('.slider__next');
+const slider = document.querySelector('.slider');
+const slidesContainer = document.querySelector('.slider__slides');
+let currentSlide = 0;
+let autoSlideInterval;
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+slides.forEach(slide => {
+    const img = slide.getAttribute('data-image');
+    if (img) {
+        slide.style.backgroundImage = `url(${img})`;
+    }
+});
 
-        const carousel = document.querySelector('.carousel');
-        const slides = document.querySelectorAll('.carousel-slide');
-        const prevButton = document.querySelector('.prev');
-        const nextButton = document.querySelector('.next');
-        const indicators = document.querySelectorAll('.indicator');
-        let currentSlide = 0;
-        const totalSlides = slides.length;
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('navbar__links--active');
+});
 
-        function showSlide(index) {
-            carousel.style.transform = `translateX(-${index * 100}%)`;
-            indicators.forEach(ind => ind.classList.remove('active'));
-            indicators[index].classList.add('active');
-            currentSlide = index;
-        }
+function showSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    slides.forEach((slide, i) => slide.classList.toggle('slider__slide--active', i === currentSlide));
+    dots.forEach((dot, i) => dot.classList.toggle('slider__dot--active', i === currentSlide));
+}
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlide);
-        }
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
 
-        let autoSlide = setInterval(nextSlide, 5000);
+function startAutoSlide() {
+    stopAutoSlide();
+    autoSlideInterval = setInterval(nextSlide, 4000);
+}
 
-        nextButton.addEventListener('click', () => {
-            clearInterval(autoSlide);
-            nextSlide();
-            autoSlide = setInterval(nextSlide, 5000);
-        });
+function stopAutoSlide() {
+    if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = null;
+    }
+}
 
-        prevButton.addEventListener('click', () => {
-            clearInterval(autoSlide);
-            prevSlide();
-            autoSlide = setInterval(nextSlide, 5000);
-        });
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        navLinks.forEach(l => l.classList.remove('navbar__link--active'));
+        link.classList.add('navbar__link--active');
+    });
+});
 
-        indicators.forEach(indicator => {
-            indicator.addEventListener('click', () => {
-                clearInterval(autoSlide);
-                showSlide(parseInt(indicator.dataset.slide));
-                autoSlide = setInterval(nextSlide, 5000);
-            });
-        });
+dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+        showSlide(i);
+        stopAutoSlide();
+        startAutoSlide();
+    });
+});
+
+prevBtn.addEventListener('click', () => {
+    prevSlide();
+    stopAutoSlide();
+    startAutoSlide();
+});
+
+nextBtn.addEventListener('click', () => {
+    nextSlide();
+    stopAutoSlide();
+    startAutoSlide();
+});
+
+slider.addEventListener('mouseenter', stopAutoSlide);
+slider.addEventListener('mouseleave', startAutoSlide);
+
+startAutoSlide();
+showSlide(currentSlide);
