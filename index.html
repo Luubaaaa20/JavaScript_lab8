@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторна 3</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Лого</div>
+      <ul class="menu large-screen">
+        <li><a href="#">Головна</a></li>
+        <li><a href="#">Про нас</a></li>
+        <li><a href="#">Послуги</a></li>
+        <li><a href="#">Контакти</a></li>
+      </ul>
+      <div class="hamburger medium-screen" id="hamburger">&#9776;</div>
+      <ul class="menu medium-screen hidden" id="mobileMenu">
+        <li><a href="#">Головна</a></li>
+        <li><a href="#">Про нас</a></li>
+        <li><a href="#">Послуги</a></li>
+        <li><a href="#">Контакти</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="carousel">
+    <div class="slides" id="slides">
+      <img src="https://place-hold.it/800x300?text=Slide+1" alt="Slide 1" />
+      <img src="https://place-hold.it/800x300?text=Slide+2" alt="Slide 2" />
+      <img src="https://place-hold.it/800x300?text=Slide+3" alt="Slide 3" />
+    </div>
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <section class="images">
+    <div class="large-only">
+      <img src="https://place-hold.it/200x200?text=Large1" />
+      <img src="https://place-hold.it/200x200?text=Large2" />
+    </div>
+    <div class="medium-only">
+      <img src="https://place-hold.it/200x200?text=Medium1" />
+      <img src="https://place-hold.it/200x200?text=Medium2" />
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
