@@ -1,59 +1,58 @@
-const hamburger = document.getElementById('hamburger');
-const menu = document.getElementById('menu');
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const mobileMenu = document.getElementById("mobileMenu");
 
-hamburger.addEventListener('click', () => {
-  menu.classList.toggle('active');
+hamburgerBtn.addEventListener("click", () => {
+  mobileMenu.style.display =
+    mobileMenu.style.display === "flex" ? "none" : "flex";
 });
 
-const slides = document.getElementById('slides');
-const dotsContainer = document.getElementById('dots');
-const totalSlides = slides.children.length;
-let currentSlide = 0;
-let interval = setInterval(nextSlide, 3000);
+const slides = document.getElementById("slides");
+const images = slides.getElementsByTagName("img");
+const dotsContainer = document.getElementById("dots");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+let index = 0;
+
+function showSlide(i) {
+  if (i >= images.length) index = 0;
+  if (i < 0) index = images.length - 1;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+  updateDots();
+}
 
 function updateDots() {
-  dotsContainer.innerHTML = '';
-  for (let i = 0; i < totalSlides; i++) {
-    const dot = document.createElement('span');
-    dot.classList.add('dot');
-    if (i === currentSlide) dot.classList.add('active');
-    dot.addEventListener('click', () => {
-      currentSlide = i;
-      updateCarousel();
-      resetInterval();
+  const dots = dotsContainer.querySelectorAll("span");
+  dots.forEach(dot => dot.classList.remove("active"));
+  dots[index].classList.add("active");
+}
+
+function createDots() {
+  for (let i = 0; i < images.length; i++) {
+    const dot = document.createElement("span");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      index = i;
+      showSlide(index);
     });
     dotsContainer.appendChild(dot);
   }
 }
 
-function updateCarousel() {
-  slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-  updateDots();
-}
-
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  updateCarousel();
-}
-
-function prevSlide() {
-  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-  updateCarousel();
-}
-
-function resetInterval() {
-  clearInterval(interval);
-  interval = setInterval(nextSlide, 3000);
-}
-
-document.getElementById('next').addEventListener('click', () => {
-  nextSlide();
-  resetInterval();
+nextBtn.addEventListener("click", () => {
+  index++;
+  showSlide(index);
 });
 
-document.getElementById('prev').addEventListener('click', () => {
-  prevSlide();
-  resetInterval();
+prevBtn.addEventListener("click", () => {
+  index--;
+  showSlide(index);
 });
 
-updateCarousel();
+createDots();
+showSlide(index);
+
+setInterval(() => {
+  index++;
+  showSlide(index);
+}, 5000);
