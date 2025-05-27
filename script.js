@@ -1,6 +1,7 @@
 const hamburger = document.querySelector('.navbar__hamburger');
 const navMenu = document.querySelector('.navbar__links');
 const navLinks = document.querySelectorAll('.navbar__link');
+const ctaButton = document.querySelector('.hero__button');
 const slides = document.querySelectorAll('.slider__slide');
 const dots = document.querySelectorAll('.slider__dot');
 const prevBtn = document.querySelector('.slider__prev');
@@ -10,20 +11,13 @@ const slidesContainer = document.querySelector('.slider__slides');
 let currentSlide = 0;
 let autoSlideInterval;
 
-slides.forEach(slide => {
-    const img = slide.getAttribute('data-image');
-    if (img) {
-        slide.style.backgroundImage = `url(${img})`;
-    }
-});
-
 hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('navbar__links--active');
 });
 
 function showSlide(index) {
     currentSlide = (index + slides.length) % slides.length;
-    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100 / slides.length}%)`;
     slides.forEach((slide, i) => slide.classList.toggle('slider__slide--active', i === currentSlide));
     dots.forEach((dot, i) => dot.classList.toggle('slider__dot--active', i === currentSlide));
 }
@@ -50,17 +44,22 @@ function stopAutoSlide() {
 
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-        e.preventDefault();
-        navLinks.forEach(l => l.classList.remove('navbar__link--active'));
-        link.classList.add('navbar__link--active');
+        if (!link.href.includes('index.html')) {
+            e.preventDefault();
+            navLinks.forEach(l => l.classList.remove('navbar__link--active'));
+            link.classList.add('navbar__link--active');
+            console.log(`Перехід до: ${link.textContent}`);
+        }
     });
+});
+
+ctaButton.addEventListener('click', () => {
+    alert('Ознайомтесь із каталогом GameBox!');
 });
 
 dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
         showSlide(i);
-        stopAutoSlide();
-        startAutoSlide();
     });
 });
 
@@ -78,6 +77,10 @@ nextBtn.addEventListener('click', () => {
 
 slider.addEventListener('mouseenter', stopAutoSlide);
 slider.addEventListener('mouseleave', startAutoSlide);
+
+document.querySelectorAll('.slider__button').forEach(btn => {
+    btn.addEventListener('click', () => alert('Перейдіть до каталогу для деталей!'));
+});
 
 startAutoSlide();
 showSlide(currentSlide);
