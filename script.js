@@ -1,41 +1,53 @@
-const hamburger = document.getElementById("hamburger");
-const menu = document.getElementById("menu");
-hamburger.addEventListener("click", () => {
-  menu.classList.toggle("show");
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
 });
 
-let current = 0;
-const slides = document.querySelectorAll(".slide");
-const dotsContainer = document.getElementById("dots");
-
-slides.forEach((_, i) => {
-  const dot = document.createElement("span");
-  dot.addEventListener("click", () => showSlide(i));
-  dotsContainer.appendChild(dot);
-});
-
-const dots = dotsContainer.querySelectorAll("span");
+const carousel = document.querySelector('.carousel');
+const slides = document.querySelectorAll('.carousel-slide');
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+const indicators = document.querySelectorAll('.indicator');
+let currentSlide = 0;
+const totalSlides = slides.length;
 
 function showSlide(index) {
-  slides[current].classList.remove("active");
-  dots[current].classList.remove("active");
-  current = index;
-  slides[current].classList.add("active");
-  dots[current].classList.add("active");
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+    indicators.forEach(ind => ind.classList.remove('active'));
+    indicators[index].classList.add('active');
+    currentSlide = index;
 }
 
-document.getElementById("prev").onclick = () => {
-  showSlide((current - 1 + slides.length) % slides.length);
-};
-
-document.getElementById("next").onclick = () => {
-  showSlide((current + 1) % slides.length);
-};
-
-function autoSlide() {
-  showSlide((current + 1) % slides.length);
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
 }
 
-setInterval(autoSlide, 5000); 
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+}
 
-showSlide(0); 
+let autoSlide = setInterval(nextSlide, 5000);
+
+nextButton.addEventListener('click', () => {
+    clearInterval(autoSlide);
+    nextSlide();
+    autoSlide = setInterval(nextSlide, 5000);
+});
+
+prevButton.addEventListener('click', () => {
+    clearInterval(autoSlide);
+    prevSlide();
+    autoSlide = setInterval(nextSlide, 5000);
+});
+
+indicators.forEach(indicator => {
+    indicator.addEventListener('click', () => {
+        clearInterval(autoSlide);
+        showSlide(parseInt(indicator.dataset.slide));
+        autoSlide = setInterval(nextSlide, 5000);
+    });
+});
