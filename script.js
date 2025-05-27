@@ -1,37 +1,41 @@
-const hamburger = document.querySelector('.hamburger');
-const mobileMenu = document.querySelector('.mobile-menu');
-
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('show');
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("menu");
+hamburger.addEventListener("click", () => {
+  menu.classList.toggle("show");
 });
 
-let slideIndex = 0;
-let slides = document.querySelectorAll('.slide');
-let dots = document.querySelectorAll('.dot');
+let current = 0;
+const slides = document.querySelectorAll(".slide");
+const dotsContainer = document.getElementById("dots");
+
+slides.forEach((_, i) => {
+  const dot = document.createElement("span");
+  dot.addEventListener("click", () => showSlide(i));
+  dotsContainer.appendChild(dot);
+});
+
+const dots = dotsContainer.querySelectorAll("span");
 
 function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
-    dots[i].classList.toggle('active', i === index);
-  });
-  slideIndex = index;
+  slides[current].classList.remove("active");
+  dots[current].classList.remove("active");
+  current = index;
+  slides[current].classList.add("active");
+  dots[current].classList.add("active");
 }
 
-function nextSlide() {
-  slideIndex = (slideIndex + 1) % slides.length;
-  showSlide(slideIndex);
+document.getElementById("prev").onclick = () => {
+  showSlide((current - 1 + slides.length) % slides.length);
+};
+
+document.getElementById("next").onclick = () => {
+  showSlide((current + 1) % slides.length);
+};
+
+function autoSlide() {
+  showSlide((current + 1) % slides.length);
 }
 
-function prevSlide() {
-  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
-  showSlide(slideIndex);
-}
+setInterval(autoSlide, 5000); 
 
-document.querySelector('.next').addEventListener('click', nextSlide);
-document.querySelector('.prev').addEventListener('click', prevSlide);
-
-dots.forEach((dot, i) => {
-  dot.addEventListener('click', () => showSlide(i));
-});
-
-setInterval(nextSlide, 5000); 
+showSlide(0); 
