@@ -1,0 +1,104 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  background-color: #333;
+  color: white;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.hamburger {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+  flex-direction: column;
+  background-color: #333;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2em;
+  color: black;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dots span {
+  height: 10px;
+  width: 10px;
+  margin: 0 3px;
+  background-color: gray;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.active-dot {
+  background-color: black;
+}
+
+/* Адаптивність */
+@media (max-width: 767px) {
+  .large-screen { display: none; }
+  .medium-screen { display: block; }
+
+  .medium-only { display: block; }
+  .large-only { display: none; }
+}
+
+@media (min-width: 768px) {
+  .medium-screen { display: none; }
+  .large-screen { display: flex; }
+
+  .medium-only { display: none; }
+  .large-only { display: block; }
+}
