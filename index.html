@@ -1,47 +1,45 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Адаптивна сторінка з ефектами</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive Webpage</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="nav-container">
-        <button class="hamburger">☰</button>
-        <ul class="nav-menu">
-            <li class="nav-item"><img src="https://place-hold.it/24x24" alt="icon">Головна</li>
-            <li class="nav-item"><img src="https://place-hold.it/24x24" alt="icon">Про нас</li>
-            <li class="nav-item"><img src="https://place-hold.it/24x24" alt="icon">Послуги</li>
-            <li class="nav-item"><img src="https://place-hold.it/24x24" alt="icon">Контакти</li>
-        </ul>
-    </nav>
+  <nav class="nav-container">
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul class="nav-list" id="nav-list">
+      <li><span>🏠</span><a href="#">Home</a></li>
+      <li><span>📖</span><a href="#">About</a></li>
+      <li><span>📞</span><a href="#">Contact</a></li>
+      <li><span>⚙️</span><a href="#">Settings</a></li>
+    </ul>
+  </nav>
 
-    <div class="carousel-container">
-        <div class="carousel">
-            <div class="carousel-slide"><img src="https://place-hold.it/800x300/1" alt="Slide 1"></div>
-            <div class="carousel-slide"><img src="https://place-hold.it/800x300/2" alt="Slide 2"></div>
-            <div class="carousel-slide"><img src="https://place-hold.it/800x300/3" alt="Slide 3"></div>
-            <div class="carousel-slide"><img src="https://place-hold.it/800x300/4" alt="Slide 4"></div>
-        </div>
-        <div class="carousel-controls">
-            <button class="prev">←</button>
-            <button class="next">→</button>
-        </div>
-        <div class="carousel-indicators">
-            <div class="indicator active" data-slide="0"></div>
-            <div class="indicator" data-slide="1"></div>
-            <div class="indicator" data-slide="2"></div>
-            <div class="indicator" data-slide="3"></div>
-        </div>
+  <div class="carousel-container">
+    <div class="carousel" id="carousel">
+      <img src="https://place-hold.it/800x400/FF5733/fff?text=Slide+1" alt="Slide 1">
+      <img src="https://place-hold.it/800x400/33FF57/fff?text=Slide+2" alt="Slide 2">
+      <img src="https://place-hold.it/800x400/5733FF/fff?text=Slide+3" alt="Slide 3">
+      <img src="https://place-hold.it/800x400/FFFF33/fff?text=Slide+4" alt="Slide 4">
     </div>
+    <button class="carousel-arrow arrow-left" onclick="prevSlide()">❮</button>
+    <button class="carousel-arrow arrow-right" onclick="nextSlide()">❯</button>
+    <div class="carousel-indicators" id="indicators"></div>
+  </div>
 
-    <img src="https://place-hold.it/300x200/5" alt="Large image 1" class="large-only">
-    <img src="https://place-hold.it/300x200/6" alt="Large image 2" class="large-only">
+  <div class="images-large">
+    <img src="https://place-hold.it/200x150/FF0000/fff?text=Large+1" alt="Large Image 1">
+    <img src="https://place-hold.it/200x150/00FF00/fff?text=Large+2" alt="Large Image 2">
+    <img src="https://place-hold.it/200x150/0000FF/fff?text=Large+3" alt="Large Image 3">
+  </div>
 
-    <img src="https://place-hold.it/300x200/7" alt="Medium image 1" class="medium-only">
-    <img src="https://place-hold.it/300x200/8" alt="Medium image 2" class="medium-only">
+  <div class="images-medium">
+    <img src="https://place-hold.it/200x150/FFFF00/fff?text=Medium+1" alt="Medium Image 1">
+    <img src="https://place-hold.it/200x150/FF00FF/fff?text=Medium+2" alt="Medium Image 2">
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
