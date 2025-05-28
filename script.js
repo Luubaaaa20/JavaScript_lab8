@@ -41,5 +41,4 @@ function goToSlide(index) {
   updateCarousel();
 }
 
-// Auto-slide every 5 seconds
 setInterval(nextSlide, 5000);
