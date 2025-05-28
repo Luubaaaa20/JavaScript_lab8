@@ -1,165 +1,160 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
-/* Навігаційне меню */
 .nav-container {
-    background: #333;
-    padding: 10px;
+  background-color: #333;
+  padding: 10px;
+  position: relative;
 }
 
-.nav-menu {
-    display: flex;
-    justify-content: center;
-    list-style: none;
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-.nav-item {
-    margin: 0 20px;
-    color: white;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+.nav-list li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.nav-item img {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
+.nav-list a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
 }
 
 .hamburger {
-    display: none;
-    font-size: 24px;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
-/* Карусель */
 .carousel-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    overflow: hidden;
-    position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
 }
 
 .carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 }
 
-.carousel-slide {
-    min-width: 100%;
-    height: 300px;
+.carousel img {
+  width: 100%;
+  flex-shrink: 0;
 }
 
-.carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
 }
 
-.carousel-controls {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
+.arrow-left {
+  left: 10px;
 }
 
-.carousel-controls button {
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
+.arrow-right {
+  right: 10px;
 }
 
 .carousel-indicators {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
 }
 
 .indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ccc;
-    cursor: pointer;
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .indicator.active {
-    background: #333;
+  background: #333;
 }
 
-/* Зображення для різних пристроїв */
-.large-only {
-    display: block;
-    margin: 20px auto;
-    max-width: 300px;
+.images-large, .images-medium {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
 }
 
-.medium-only {
+.images-large img, .images-medium img {
+  width: 200px;
+  height: 150px;
+}
+
+@media (max-width: 767px) {
+  .nav-list {
     display: none;
-    margin: 20px auto;
-    max-width: 300px;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background: #333;
+    padding: 10px 0;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-list.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .images-large {
+    display: none;
+  }
+
+  .images-medium {
+    display: flex;
+  }
 }
 
-/* Медіа-запити */
-@media screen and (max-width: 767px) {
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: #333;
-        animation: slideDown 0.3s ease-in-out;
-    }
+@media (min-width: 768px) {
+  .images-large {
+    display: flex;
+  }
 
-    .nav-menu.active {
-        display: flex;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .large-only {
-        display: none;
-    }
-
-    .medium-only {
-        display: block;
-    }
-
-    .carousel-slide {
-        height: 200px;
-    }
-}
-
-@keyframes slideDown {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  .images-medium {
+    display: none;
+  }
 }
