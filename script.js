@@ -1,53 +1,45 @@
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+function toggleMenu() {
+  const navList = document.getElementById('nav-list');
+  navList.classList.toggle('active');
+}
 
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
-
-const carousel = document.querySelector('.carousel');
-const slides = document.querySelectorAll('.carousel-slide');
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-const indicators = document.querySelectorAll('.indicator');
+const carousel = document.getElementById('carousel');
+const indicatorsContainer = document.getElementById('indicators');
+const slides = carousel.children;
 let currentSlide = 0;
 const totalSlides = slides.length;
 
-function showSlide(index) {
-    carousel.style.transform = `translateX(-${index * 100}%)`;
-    indicators.forEach(ind => ind.classList.remove('active'));
-    indicators[index].classList.add('active');
-    currentSlide = index;
+for (let i = 0; i < totalSlides; i++) {
+  const indicator = document.createElement('div');
+  indicator.classList.add('indicator');
+  if (i === 0) indicator.classList.add('active');
+  indicator.onclick = () => goToSlide(i);
+  indicatorsContainer.appendChild(indicator);
+}
+
+const indicators = indicatorsContainer.children;
+
+function updateCarousel() {
+  carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+  for (let i = 0; i < indicators.length; i++) {
+    indicators[i].classList.toggle('active', i === currentSlide);
+  }
 }
 
 function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateCarousel();
 }
 
 function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    showSlide(currentSlide);
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  updateCarousel();
 }
 
-let autoSlide = setInterval(nextSlide, 5000);
+function goToSlide(index) {
+  currentSlide = index;
+  updateCarousel();
+}
 
-nextButton.addEventListener('click', () => {
-    clearInterval(autoSlide);
-    nextSlide();
-    autoSlide = setInterval(nextSlide, 5000);
-});
-
-prevButton.addEventListener('click', () => {
-    clearInterval(autoSlide);
-    prevSlide();
-    autoSlide = setInterval(nextSlide, 5000);
-});
-
-indicators.forEach(indicator => {
-    indicator.addEventListener('click', () => {
-        clearInterval(autoSlide);
-        showSlide(parseInt(indicator.dataset.slide));
-        autoSlide = setInterval(nextSlide, 5000);
-    });
-});
+// Auto-slide every 5 seconds
+setInterval(nextSlide, 5000);
